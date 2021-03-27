@@ -14,7 +14,6 @@
 
 Auth::routes();
 
-Route::group(['middleware' => ['auth']], function () {
 
 Route::get('/', 'App\Http\Controllers\AdminController@index')->name('all');
 
@@ -29,4 +28,3 @@ Route::get('/get-employees', 'App\Http\Controllers\EmployeeController@report')->
 
 Route::post('/report', 'App\Http\Controllers\EmployeeController@report')->name('report');
 
-});
