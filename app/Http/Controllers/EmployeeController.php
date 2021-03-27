@@ -71,18 +71,18 @@ class EmployeeController extends Controller
             ->join('designations', 'employees.designation_id', '=', 'designations.id')
             ->join('countries', 'states.country_id', '=', 'countries.id')
             ->select('employees.*', 'states.name as state_name', 'designations.name as designation_name', 'countries.name as country_name');
-
-        if (isset($request->designation_id) && $request->designation_id != "") {
+    
+        if (isset($request->designation_id) AND !empty($request->designation_id)) {
             $query = $query->where('employees.designation_id', $request->designation_id);
         }
 
-        if (isset($request->sort_by) && $request->sort_by != "") {
+        if (isset($request->sort_by) AND !empty($request->sort_by)) {
             $sort_by = $request->sort_by;
         } else {
             $sort_by = "asc";
         }
 
-        if (isset($request->order_by) && $request->order_by != "") {
+        if (isset($request->order_by) AND !empty($request->order_by)) {
             $query = $query->orderBy($request->order_by, $sort_by);
         } else {
             $query = $query->orderBy('name', $sort_by);

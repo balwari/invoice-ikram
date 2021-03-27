@@ -63,7 +63,7 @@
         <li><a href="{{route('all')}}">Home </a></li> /
         <li>Report</li>
     </ul>
-    <form class="form-horizontal" method="post" action="{{route('report')}}">
+    <form class="form-horizontal" method="get" action="{{route('get-employees')}}">
         {{ csrf_field() }}
         <div class="col-md-12">
             <div class="row">
@@ -71,7 +71,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="doj">Country:</label>
                         <div class="col-sm-10">
-                            <select class="form-control" name="country_id" id="country" >
+                            <select class="form-control" name="country_id" id="country" required>
                                 <option value="">All</option>
                                 @foreach($countries as $country)
                                 <option value="{{ $country->id }}">{{ $country->name }}</option>
@@ -84,7 +84,7 @@
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="state">State:</label>
                         <div class="col-sm-10">
-                            <select class="form-control" name="state_id" id="state" >
+                            <select class="form-control" name="state_id" id="state" required>
                             <option value="">All</option>    
                         </select>
                         </div>
@@ -94,16 +94,45 @@
                     <div class="form-group">
                         <label class="control-label col-sm-4" for="doj">Designation:</label>
                         <div class="col-sm-10">
-                            <select class="form-control" name="designation_id" id="designation">
+                            <select class="form-control" name="designation_id" id="designation" required>
                             <option value="">All</option>    
                         </select>
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Order By:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="order_by" required>
+                                <option value="">Select</option>
+                                <option value="name">Name</option>
+                                <option value="email">Email</option>
+                                <option value="age">Age</option>
+                                <option value="designation_id">Designation</option>
+                                <option value="state_id">State</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4">Sort By:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="sort_by" required>
+                            <option value="">Select</option>    
+                            <option value="asc">Ascending order</option>
+                                <option value="desc">Descending order</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-md-12">
-                    <div class="col-md-2 offset-md-5">
+                    <div class="col-md-4 offset-md-4">
                         <div class="form-group">
                             <input type="submit" class="btn btn-success" value="Submit">
+                            <a href="{{route('get-employees')}}" style="margin-left:30px;background-color:black;padding:9px;color:white;"><span>Show All Designation Employees</span></a>
                         </div>
                     </div>
                 </div>
